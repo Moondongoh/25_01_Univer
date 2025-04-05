@@ -105,7 +105,7 @@ plt.legend()
 plt.show()
 
 # 이미지 예측
-image_path = 'C:/Users/Moon/Desktop/AI/chap07/test.png'
+image_path = 'C:/Users/Moon/Desktop/test.jpg'
 image = cv2.imread(image_path, cv2.IMREAD_GRAYSCALE)
 
 if image is None:
