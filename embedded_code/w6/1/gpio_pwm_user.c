@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <pigpio.h>
 
-// RGB LED 핀 설정 (PWM 가능 핀이어야 함)
 #define RED_PIN 17
 #define GREEN_PIN 22
 #define BLUE_PIN 24
