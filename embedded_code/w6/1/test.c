@@ -96,8 +96,10 @@
 #define switchPin2 20  // 초록 제어
 #define switchPin3 16  // 파랑 제어
 
-int main() {
-    if (gpioInitialise() < 0) {
+int main() 
+{
+    if (gpioInitialise() < 0) 
+    {
         printf("pigpio 초기화 실패\n");
         return 1;
     }
@@ -112,7 +114,8 @@ int main() {
     if (strlen(input) != 3 || 
         (input[0] != '0' && input[0] != '1') ||
         (input[1] != '0' && input[1] != '1') ||
-        (input[2] != '0' && input[2] != '1')) {
+        (input[2] != '0' && input[2] != '1')) 
+        {
         printf("잘못된 입력입니다. 형식은 3자리 이진수 (예: 010) 여야 합니다.\n");
         gpioTerminate();
         return 1;
