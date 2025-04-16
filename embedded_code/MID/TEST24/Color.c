@@ -7,6 +7,11 @@
 #define redPin  17
 #define greenPin  27
 #define bluePin  22
+#define switchPin  21
+
+#define RED_PIN 5
+#define GREEN_PIN 6
+#define BLUE_PIN 13
 
 void turnOffLEDs() {
     gpioWrite(redPin, 0);
@@ -31,10 +36,13 @@ int main(void)
     printf("1번 0.5초 무한히 led On/Off  반복\n");
     printf("2번 RGB값 PWM(0~255)으로 입력 받고 led On\n");
     printf("3번 RGB값 gpiowire(0 or 1)로 입력 받고 led On/Off 반복\n");
+    printf("4번 스위치를 누르면 빨 -> 초 -> 파 -> 꺼짐 반복\n");
+    printf("원하는 번호를 입력하세요: ");
+
 
     scanf("%d", &num);
     
-    if(num!=1 && num!=2 && num!=3){
+    if(num!=1 && num!=2 && num!=3 && num!=4){
         printf("잘못된 입력입니다.\n");
         return 0;
     }
@@ -138,6 +146,48 @@ int main(void)
                 gpioWrite(bluePin, 0);
 
             }
+
+        case 4:
+            while(1)
+            {
+                int button = gpioRead(switchPin);
+        
+                if (button == 0) {
+                    // 버튼이 눌렸을 때 → 전체 LED ON 상태 유지
+                    gpioWrite(BLUE_PIN, 1);
+                    time_sleep(1); 
+                    gpioWrite(BLUE_PIN, 0);
+
+                    gpioWrite(GREEN_PIN, 1);
+                    time_sleep(1);
+                    gpioWrite(GREEN_PIN, 0);
+
+                    gpioWrite(RED_PIN, 1);
+                    time_sleep(1);
+                    gpioWrite(RED_PIN, 0);
+
+                } else {
+                    // 버튼 안 눌렸을 때 → 순차 점등
+                    gpioWrite(RED_PIN, 1); 
+                    time_sleep(0.5); 
+                    gpioWrite(RED_PIN, 0); 
+                    time_sleep(0.5);
+
+                    gpioWrite(GREEN_PIN, 1); 
+                    time_sleep(0.5); 
+                    gpioWrite(GREEN_PIN, 0); 
+                    time_sleep(0.5);
+
+                    gpioWrite(BLUE_PIN, 1); 
+                    time_sleep(0.5); 
+                    gpioWrite(BLUE_PIN, 0); 
+                    time_sleep(0.5);
+
+                }
+        
+                time_sleep(1);
+            }
+            break;
     }
 
     gpioTerminate(); // pigpio 종료
