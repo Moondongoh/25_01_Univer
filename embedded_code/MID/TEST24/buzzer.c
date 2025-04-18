@@ -38,7 +38,7 @@ void buzzerScale() {
         int freq = start_freq + i * step_size;
         gpioHardwarePWM(BUZZER_PIN, freq, duty_cycle);
         printf("주파수: %d Hz\n", freq);
-        time_sleep(0.3);
+        time_sleep(0.3); // 0.3초 대기 <<<<<시간 조정
     }
 
     gpioHardwarePWM(BUZZER_PIN, 0, 0); // 부저 끄기

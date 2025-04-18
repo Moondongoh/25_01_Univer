@@ -39,7 +39,9 @@ int main() {
     gpioSetMode(BUZZER_PIN, PI_OUTPUT);
 
     for (int i = 0; i < sizeof(melody) / sizeof(melody[0]); i++) {
+        
         playTone(melody[i], duration[i]);
+        gpioWrite(BUZZER_PIN, 0);  // 부저 끄기
         gpioDelay(100000);  // 음 사이의 간격
     }
 
