@@ -25,8 +25,8 @@ else:
 
 model = tf.keras.models.Sequential()
 # model.add(layers.Conv2D(16,(3,3), activation='relu', input_shape=(128,128,3))) # 1번 필터 16개 커널 3*3짜리 은닉층 추가
-model.add(layers.MaxPooling2D(2,2))
-model.add(layers.Conv2D(32,(3,3), activation='relu',  input_shape=(128,128,3)))
+# model.add(layers.MaxPooling2D(2,2))
+model.add(layers.Conv2D(32,(3,3), activation='relu', input_shape=(128,128,3)))
 model.add(layers.MaxPooling2D(2,2))
 model.add(layers.Conv2D(64,(3,3), activation='relu'))
 model.add(layers.MaxPooling2D(2,2))
@@ -70,7 +70,7 @@ history = model.fit(train_generator,
                     epochs=5, # 3번 에포크 5 > 10으로 바꾸기
                     verbose=1) # 0: 훈련과정 출력 안함, 1: 훈련과정 출력함)
 #==================================================================
-model.save(base_dir + '/catdog05040901_0.h5')
+model.save(base_dir + '/catdog05040901_3.h5')
 #==================================================================
 import matplotlib.pyplot as plt
 plt.plot(history.history['accuracy'])
