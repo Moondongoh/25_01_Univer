@@ -1,3 +1,5 @@
 Makefile
 
 *.sh
+
+__pycache__
